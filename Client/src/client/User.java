@@ -7,6 +7,7 @@
 package client;
 // basic java network
 import java.net.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -16,10 +17,11 @@ public class User {
     private static String username;
     private static String password;
     private static String hostname;
-    private static int serverPort;
+    private static int serverPort = 8888;
     private static Socket clientSocket;
     private static boolean loginStatus;
-
+    private static ArrayList<String> cuaca = new ArrayList<>();
+    
     /**
      * @return the username
      */
@@ -102,6 +104,10 @@ public class User {
      */
     public static void setLoginStatus(boolean aLoginStatus) {
         loginStatus = aLoginStatus;
+    }
+
+    static void setServerPort() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

@@ -20,8 +20,24 @@ public class Connecting {
         Socket clientSocket;
         boolean status = false;
         
+        
         System.err.println("connecting");
-        return null;
+       /* try {
+            clientSocket = new Socket (User.getHostname() ,  User.getServerPort());
+            User.setClientSocket(clientSocket);
+            
+            ObjectInputStream ios = new ObjectInputStream(User.getClientSocket().getInputStream());
+            
+            // stub stub
+            // cmd cmd
+            
+            try {
+               return null;
+               
+            }
+            return null;
+        }*/
+        return null; 
 
     }
     
