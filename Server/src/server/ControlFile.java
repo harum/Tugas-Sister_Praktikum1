@@ -15,7 +15,8 @@ import java.io.File;
  */
 public class ControlFile {
     private String pathFile;
-    public void bacaSemua()
+    
+    public String readCuaca()
     {
         String isi = null;
         File fileCuaca = new File("cuaca.txt");
@@ -25,24 +26,79 @@ public class ControlFile {
             reader.read(chars);
             isi = new String(chars);
             reader.close();
-            System.out.println(isi);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return isi;     
+    }
+    public void bacaSemua()
+    {
+        String temp;
+        temp = readCuaca();
+        System.out.println(temp);
     }
     
-    public void bacaTanggal()
+    
+    public void bacaTanggal(String tanggal)
     {
-        
+        String temp;
+        int i;
+        temp = readCuaca();
+        String perBaris [] = temp.split("\n");
+        System.out.println(perBaris[0]);
+        for(i=0;i<perBaris.length;i++)
+        {
+            if(perBaris[i].indexOf(tanggal) != -1)
+            {
+                System.out.println(perBaris[i]);
+            }
+        }
     }
     
-    public void bacaBulan()
+    public void bacaBulan( String bulan)
     {
-        
+        String temp;
+        int i;
+        temp = readCuaca();
+        String perBaris [] = temp.split("\n");
+        System.out.println(perBaris[0]);
+        for(i=0;i<perBaris.length;i++)
+        {
+            if(perBaris[i].indexOf(bulan) != -1)
+            {
+                System.out.println(perBaris[i]);
+            }
+        }
     }
     
-    public void bacaTahun()
+    public void bacaTahun( String tahun)
     {
-        
+        String temp;
+        int i;
+        temp = readCuaca();
+        String perBaris [] = temp.split("\n");
+        System.out.println(perBaris[0]);
+        for(i=0;i<perBaris.length;i++)
+        {
+            if(perBaris[i].indexOf(tahun) != -1)
+            {
+                System.out.println(perBaris[i]);
+            }
+        }
+    }
+    public void bacaHari( String hari)
+    {
+        String temp;
+        int i;
+        temp = readCuaca();
+        String perBaris [] = temp.split("\n");
+        System.out.println(perBaris[0]);
+        for(i=0;i<perBaris.length;i++)
+        {
+            if(perBaris[i].indexOf(hari) != -1)
+            {
+                System.out.println(perBaris[i]);
+            }
+        }
     }
 }
