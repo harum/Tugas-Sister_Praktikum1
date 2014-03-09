@@ -22,12 +22,14 @@ public class Client {
     public static void main(String[] args) {
         // TODO code application logic here
         // host adalah alamat dari server
-        String host="localhost";
+        //String host="localhost";
         // port adalah port yang akan digunakan
-        int port=8888;
+        //int port=8888;
         
-        StringBuffer cmd = new StringBuffer();
-        System.out.println("connecting");
+        //StringBuffer cmd = new StringBuffer();
+        System.out.println("starting up");
+        
+        
         
         
     }
