@@ -1,6 +1,7 @@
 
-Senin, 11 Maret 2014 - Hujan
-Selasa, 12 Maret 2014 - Cerah berawan
-Rabu, 13 Maret 2014 - Mendung
-Kamis, 14 Maret 2014 - Cerah
-Jumat, 15 Maret 2014 - Mendung
+Senin=11 Maret 2014=Hujan=15=48kmh=88%
+Selasa=12 Maret 2014=Cerah berawan=25=50kmh=50%
+Rabu=13 Maret 2014=Mendung=20=20kmh=60%
+Kamis=14 Maret 2014=Cerah=50=70kmh=10%
+Jumat=15 Maret 2014=Mendung=20=20kmh=50%
+Jumat=22 Maret 2014=Cerah=50=70kmh=10%
