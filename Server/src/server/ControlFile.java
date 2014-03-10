@@ -33,7 +33,7 @@ public class ControlFile {
     }
     
 //Fungsi ini membaca seluruh ramalan cuaca yang ada.
-    public void bacaSemua()
+    public String bacaSemua()
     {
         String temp;
         String akhir = "";
@@ -54,6 +54,7 @@ public class ControlFile {
             }
         }
         System.out.println(akhir);
+        return akhir;
     }
     
 //Fungsi ini menerima input berupa tanggal, misalkan: "11 Maret 2014"
@@ -66,7 +67,7 @@ public class ControlFile {
 	Angin : 48kmh
 	Kelembaban : 88%
     */
-    public void bacaTanggal(String tanggal)
+    public String bacaTanggal(String tanggal)
     {
         String temp;
         String akhir = "";
@@ -87,6 +88,7 @@ public class ControlFile {
             }
         }
         System.out.println(akhir);
+        return akhir;
     }
     
     
@@ -100,7 +102,7 @@ public class ControlFile {
 	Angin : 48kmh
 	Kelembaban : 88%
     */
-    public void bacaBulan( String bulan)
+    public String bacaBulan( String bulan)
     {
         String temp;
         String akhir = "";
@@ -121,6 +123,7 @@ public class ControlFile {
             }
         }
         System.out.println(akhir);
+        return akhir;
     }
     
 //Fungsi ini menerima input berupa tahun, misalkan: "2014"
@@ -133,7 +136,7 @@ public class ControlFile {
 	Angin : 48kmh
 	Kelembaban : 88%
     */
-    public void bacaTahun( String tahun)
+    public String bacaTahun( String tahun)
     {
         String temp;
         String akhir = "";
@@ -154,6 +157,7 @@ public class ControlFile {
             }
         }
         System.out.println(akhir);
+        return akhir;
     }
     
     
@@ -167,7 +171,7 @@ public class ControlFile {
 	Angin : 48kmh
 	Kelembaban : 88%
     */
-    public void bacaHari( String hari)
+    public String bacaHari( String hari)
     {
         String temp;
         String akhir = "";
@@ -188,6 +192,7 @@ public class ControlFile {
             }
         }
         System.out.println(akhir);
+        return akhir;
     }
     
 //Fungsi ini menerima input berupa cuaca, misalkan: "Hujan"
@@ -196,7 +201,7 @@ public class ControlFile {
     =========Hujan Akan Terjadi Pada=========
     Senin, 11 Maret 2014
     */
-    public void bacaCuaca( String cuaca)
+    public String bacaCuaca( String cuaca)
     {
         String temp;
         String akhir = "";
@@ -214,5 +219,6 @@ public class ControlFile {
 
         }
         System.out.println(akhir);
+        return akhir;
     }
 }
