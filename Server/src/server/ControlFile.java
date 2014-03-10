@@ -9,11 +9,59 @@ import java.io.IOException;
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.File;
+import mymessage.Command;
 /**
  *
  * @author Herleeyandi
  */
 public class ControlFile {
+
+    private Command result;
+    
+    public void cekCommand(Command input)
+    {
+        if(input.getCommand().toString().equals("GETALL"))
+        {            
+            result = new Command();
+            result.setCommand(input.getCommand());
+            result.setResult(bacaSemua());           
+        }
+        else if(input.getCommand().toString().equals("HARI"))
+        {            
+            result = new Command();
+            result.setCommand(input.getCommand());
+            //constraint yang dikirim harus berupa nama hari contoh "Senin"
+            result.setResult(bacaHari(input.getConstraint()));           
+        }
+        else if(input.getCommand().toString().equals("TANGGAL"))
+        {            
+            result = new Command();
+            result.setCommand(input.getCommand());
+            //constraint yang dikirim harus berupa tanggal contoh "11 Maret 2014"
+            result.setResult(bacaTanggal(input.getConstraint()));           
+        }
+        else if(input.getCommand().toString().equals("BULAN"))
+        {            
+            result = new Command();
+            result.setCommand(input.getCommand());
+            //constraint yang dikirim harus berupa tanggal contoh "Maret"
+            result.setResult(bacaBulan(input.getConstraint()));           
+        }
+        else if(input.getCommand().toString().equals("TAHUN"))
+        {            
+            result = new Command();
+            result.setCommand(input.getCommand());
+            //constraint yang dikirim harus berupa tanggal contoh "2014"
+            result.setResult(bacaTahun(input.getConstraint()));           
+        }
+        else if(input.getCommand().toString().equals("CUACA"))
+        {            
+            result = new Command();
+            result.setCommand(input.getCommand());
+            //constraint yang dikirim harus berupa tanggal contoh "Hujan"
+            result.setResult(bacaCuaca(input.getConstraint()));           
+        }
+    }
     
 //Fungsi ini berfungsi membaca isi file lalu mengembalikan hasilnya ke string.
     public String prediksiCuaca()

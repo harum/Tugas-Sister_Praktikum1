@@ -9,6 +9,7 @@ package client;
 import java.net.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+import mymessage.Command;
 
 /**
  *
@@ -21,6 +22,7 @@ public class User {
     private static int serverPort = 9090;
     private static Socket clientSocket;
     private static ArrayList<String> cuaca = new ArrayList<>();
+    private Command input;
     
     /**
      * @return the username
@@ -98,7 +100,7 @@ public class User {
             
             System.out.println("Pilih mode (menggunakan angka):");
             String[] selectMode = {"1. Hari","2. Tanggal ","3. Bulan ",
-                "4. Tahun ","5. Cuaca " };
+                "4. Tahun ","5. Cuaca ", "6. Semua"};
             
             for(int i=0;i<5;i++)
             {
@@ -160,7 +162,9 @@ public class User {
                         same++;
                 } 
                 if(same>0)
+                {
                     System.out.println("masuk");
+                }
                 else
                     System.out.println("error");
             }
