@@ -166,33 +166,38 @@ public class User {
     
     public void tanggal ()
     {
+        //input.setCommand("TANGGAL");
         Scanner scan = new Scanner(System.in);
-        System.out.println("Pilih tanggal (menggunakan kata, harus sama):");
-        int[] selectTanggal = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19
-                ,20,21,22,23,24,25,26,27,28,29,30,31};
-
-            for(int i=0;i<7;i++)
-            {
-                System.out.println(selectTanggal[i]);
-            }
-            
-            int same=0;
-            
-            while(same==0)
-            {
-                int tanggal = scan.nextInt();
-                for(int i=0;i<7;i++)
-                {
-                     if(tanggal == (selectTanggal[i]))
-                        same++;
-                } 
-                if(same>0)
-                    System.out.println("masuk");
-                else
-                    System.out.println("error");
-            }
-            
-            
+        String tanggal="";
+        System.out.println("Masukan taanggal, misalkan : 11");
+        int tanggalnya = scan.nextInt();
+        
+        System.out.println("Masukan nama bulan, misalkan : Januari");
+        String anggotaBulan="Januari,Februari,Maret,April,Mei,Juni,Juli,Agustus,Septemer,November,Desember,";
+        String upper;
+        String bulanan = scan.next();
+        upper=bulanan+",";
+        while(anggotaBulan.indexOf(upper)<0)
+        {
+            System.out.println("input salah, masukan lagi");
+            System.out.println("contoh : "+anggotaBulan);
+            bulanan = scan.next();
+            upper=bulanan+",";
+        }
+        bulanan=upper.replace(",", "");
+        
+        System.out.println("Masukan tahun, misalkan : 2014");
+        int tahunnya = scan.nextInt();
+        
+        StringBuilder dummyTanggal = new StringBuilder();
+        dummyTanggal.append("");
+        dummyTanggal.append(tanggalnya);
+        
+        StringBuilder dummyTahun = new StringBuilder();
+        dummyTahun.append("");
+        dummyTahun.append(tahunnya);
+        String send=dummyTanggal.toString()+bulanan+dummyTahun.toString();
+        //input.setConstraint(send);
     }
     
     
@@ -217,14 +222,19 @@ public class User {
     }
     public void tahun ()
     {
-        
+        //input.setCommand("TAHUN");
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Masukan tahun, misalkan : 2014");
+        int tahunnya = scan.nextInt();
+        System.out.print(tahunnya);
+        //input.setConstraint(tahunnya);
     }
     public void cuaca ()
     {
         //input.setCommand("CUACA");
         Scanner scan = new Scanner(System.in);
         System.out.println("Masukan cuaca, misalkan : Hujan");
-        String anggotaCuaca="Hujan,Cerah,CerahBerawan,Mendung";
+        String anggotaCuaca="Hujan,Cerah,CerahBerawan,Mendung,";
         String upper;
         String cuacanya = scan.next();
         upper=cuacanya+",";
@@ -237,5 +247,11 @@ public class User {
         }
         cuacanya=upper.replace(",", "");
         //input.setConstraint(cuacanya);
+    }
+    public void semua ()
+    {
+        //input.setCommand("SEMUA");
+        System.out.println("Anda merequest semua ramalan cuaca");
+        //input.setConstraint("");
     }
 }
