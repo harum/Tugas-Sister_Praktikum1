@@ -106,41 +106,47 @@ public class User {
     public void UI1 ()
         {      
             Scanner scan = new Scanner(System.in);
-            
-            System.out.println("Pilih mode (menggunakan angka):");
-            String[] selectMode = {"1. Hari","2. Tanggal ","3. Bulan ",
-                "4. Tahun ","5. Cuaca ", "6. Semua"};
-            
-            for(int i=0;i<6;i++)
+            int mode = 0;
+                    
+            while(mode!=7)
             {
-                System.out.println(selectMode[i]);
-            }
-            
-            int mode = scan.nextInt();
-            
-            if(mode == 1)
-            {
-                hari();
-            }
-            else if(mode == 2)
-            {
-                tanggal();
-            }
-            else if(mode == 3)
-            {
-                bulan();
-            }
-            else if(mode == 4)
-            {
-                tahun();
-            }
-            else if(mode == 5)
-            {
-                cuaca();
-            }
-            else 
-            {
-                semua();
+                
+                System.out.println("Pilih mode (menggunakan angka):");
+                String[] selectMode = {"1. Hari","2. Tanggal ","3. Bulan ",
+                    "4. Tahun ","5. Cuaca ", "6. Semua","7. Keluar"};
+
+                for(int i=0;i<7;i++)
+                {
+                    System.out.println(selectMode[i]);
+                }
+
+                mode = scan.nextInt();
+
+                if(mode == 1)
+                {
+                    hari();
+                }
+                else if(mode == 2)
+                {
+                    tanggal();
+                }
+                else if(mode == 3)
+                {
+                    bulan();
+                }
+                else if(mode == 4)
+                {
+                    tahun();
+                }
+                else if(mode == 5)
+                {
+                    cuaca();
+                }
+                else if (mode == 6)
+                {
+                    semua();
+                }
+                
             }
         
         }
@@ -171,6 +177,28 @@ public class User {
         }
         harian=upper.replace(",", "");
         //input.setConstraint(harian);
+        
+        try {
+            
+            ous = new ObjectOutputStream(clientSocket.getOutputStream());
+            command = new Command();
+            command.setCommand("HARI");
+            command.setConstraint(harian);
+            ous.writeObject(command);
+            ous.flush();
+            
+            
+            ois = new ObjectInputStream(clientSocket.getInputStream());
+            input = (Command) ois.readObject();
+            System.out.println("command : "+ input.getCommand());
+            System.out.println("result : "+ input.getResult());
+            
+        } catch (IOException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
     
     public void tanggal ()
@@ -205,8 +233,31 @@ public class User {
         StringBuilder dummyTahun = new StringBuilder();
         dummyTahun.append("");
         dummyTahun.append(tahunnya);
-        String send=dummyTanggal.toString()+bulanan+dummyTahun.toString();
+        String send=dummyTanggal.toString()+" "+bulanan+" "+dummyTahun.toString();
+        
         //input.setConstraint(send);
+        
+        try {
+            
+            ous = new ObjectOutputStream(clientSocket.getOutputStream());
+            command = new Command();
+            command.setCommand("TANGGAL");
+            command.setConstraint(send);
+            ous.writeObject(command);
+            ous.flush();
+            
+            
+            ois = new ObjectInputStream(clientSocket.getInputStream());
+            input = (Command) ois.readObject();
+            System.out.println("command : "+ input.getCommand());
+            System.out.println("result : "+ input.getResult());
+            
+        } catch (IOException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
     
     
@@ -228,6 +279,27 @@ public class User {
         }
         bulanan=upper.replace(",", "");
         //input.setConstraint(bulanan);
+        
+        try {
+            
+            ous = new ObjectOutputStream(clientSocket.getOutputStream());
+            command = new Command();
+            command.setCommand("BULAN");
+            command.setConstraint(bulanan);
+            ous.writeObject(command);
+            ous.flush();
+            
+            
+            ois = new ObjectInputStream(clientSocket.getInputStream());
+            input = (Command) ois.readObject();
+            System.out.println("command : "+ input.getCommand());
+            System.out.println("result : "+ input.getResult());
+            
+        } catch (IOException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     public void tahun ()
     {
@@ -235,8 +307,32 @@ public class User {
         Scanner scan = new Scanner(System.in);
         System.out.println("Masukan tahun, misalkan : 2014");
         int tahunnya = scan.nextInt();
-        System.out.print(tahunnya);
+        StringBuilder dummyTahun = new StringBuilder();
+        dummyTahun.append("");
+        dummyTahun.append(tahunnya);
+        String send=dummyTahun.toString();
         //input.setConstraint(tahunnya);
+        
+        try {
+            
+            ous = new ObjectOutputStream(clientSocket.getOutputStream());
+            command = new Command();
+            command.setCommand("TAHUN");
+            command.setConstraint(send);
+            ous.writeObject(command);
+            ous.flush();
+            
+            
+            ois = new ObjectInputStream(clientSocket.getInputStream());
+            input = (Command) ois.readObject();
+            System.out.println("command : "+ input.getCommand());
+            System.out.println("result : "+ input.getResult());
+            
+        } catch (IOException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     public void cuaca ()
     {
@@ -256,6 +352,26 @@ public class User {
         }
         cuacanya=upper.replace(",", "");
         //input.setConstraint(cuacanya);
+        try {
+            
+            ous = new ObjectOutputStream(clientSocket.getOutputStream());
+            command = new Command();
+            command.setCommand("CUACA");
+            command.setConstraint(cuacanya);
+            ous.writeObject(command);
+            ous.flush();
+            
+            
+            ois = new ObjectInputStream(clientSocket.getInputStream());
+            input = (Command) ois.readObject();
+            System.out.println("command : "+ input.getCommand());
+            System.out.println("result : "+ input.getResult());
+            
+        } catch (IOException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     public void semua ()
     {
@@ -284,4 +400,6 @@ public class User {
             
             
     }
+    
+    
 }
