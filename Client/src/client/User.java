@@ -125,6 +125,10 @@ public class User {
             {
                 tahun();
             }
+            else if(mode == 5)
+            {
+                cuaca();
+            }
             else 
             {
                 cuaca();
@@ -142,32 +146,22 @@ public class User {
     
     public void hari ()
     {
+        //input.setCommand("HARI");
         Scanner scan = new Scanner(System.in);
-        System.out.println("Pilih hari (menggunakan kata, harus sama):");
-         String[] selectHari = {"Senin", "Selasa", "Rabu", "Kamis", "Jumat",
-         "Sabtu","Minggu"};
-            for(int i=0;i<7;i++)
-            {
-                System.out.println(selectHari[i]);
-            }
-            
-            int same=0;
-            
-            while(same==0)
-            {
-                String harian = scan.next();
-                for(int i=0;i<7;i++)
-                {
-                     if(harian.equals(selectHari[i]))
-                        same++;
-                } 
-                if(same>0)
-                {
-                    System.out.println("masuk");
-                }
-                else
-                    System.out.println("error");
-            }
+        System.out.println("Masukan nama hari, misalkan : Senin");
+        String anggotaHari="Senin,Selasa,Rabu,Kamis,Jumat,Sabtu,Minggu,";
+        String upper;
+        String harian = scan.next();
+        upper=harian+",";
+        while(anggotaHari.indexOf(upper)<0)
+        {
+            System.out.println("input salah, masukan lagi");
+            System.out.println("contoh : "+anggotaHari);
+            harian = scan.next();
+            upper=harian+",";
+        }
+        harian=upper.replace(",", "");
+        //input.setConstraint(harian);
     }
     
     public void tanggal ()
@@ -204,7 +198,22 @@ public class User {
     
     public void bulan ()
     {
-        
+        //input.setCommand("BULAN");
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Masukan nama bulan, misalkan : Januari");
+        String anggotaBulan="Januari,Februari,Maret,April,Mei,Juni,Juli,Agustus,Septemer,November,Desember,";
+        String upper;
+        String bulanan = scan.next();
+        upper=bulanan+",";
+        while(anggotaBulan.indexOf(upper)<0)
+        {
+            System.out.println("input salah, masukan lagi");
+            System.out.println("contoh : "+anggotaBulan);
+            bulanan = scan.next();
+            upper=bulanan+",";
+        }
+        bulanan=upper.replace(",", "");
+        //input.setConstraint(bulanan);
     }
     public void tahun ()
     {
@@ -212,6 +221,21 @@ public class User {
     }
     public void cuaca ()
     {
-        
+        //input.setCommand("CUACA");
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Masukan cuaca, misalkan : Hujan");
+        String anggotaCuaca="Hujan,Cerah,CerahBerawan,Mendung";
+        String upper;
+        String cuacanya = scan.next();
+        upper=cuacanya+",";
+        while(anggotaCuaca.indexOf(upper)<0)
+        {
+            System.out.println("input salah, masukan lagi");
+            System.out.println("contoh : "+anggotaCuaca);
+            cuacanya = scan.next();
+            upper=cuacanya+",";
+        }
+        cuacanya=upper.replace(",", "");
+        //input.setConstraint(cuacanya);
     }
 }

@@ -20,7 +20,7 @@ public class ControlFile {
     
     public void cekCommand(Command input)
     {
-        if(input.getCommand().toString().equals("GETALL"))
+        if(input.getCommand().toString().equals("SEMUA"))
         {            
             result = new Command();
             result.setCommand(input.getCommand());
