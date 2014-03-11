@@ -6,9 +6,14 @@
 
 package client;
 // basic java network
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import mymessage.Command;
 
 /**
@@ -22,7 +27,11 @@ public class User {
     private static int serverPort = 9090;
     private static Socket clientSocket;
     private static ArrayList<String> cuaca = new ArrayList<>();
+    
+    private Command command;
     private Command input;
+    private ObjectOutputStream ous;
+    private ObjectInputStream ois;
     
     /**
      * @return the username
@@ -102,7 +111,7 @@ public class User {
             String[] selectMode = {"1. Hari","2. Tanggal ","3. Bulan ",
                 "4. Tahun ","5. Cuaca ", "6. Semua"};
             
-            for(int i=0;i<5;i++)
+            for(int i=0;i<6;i++)
             {
                 System.out.println(selectMode[i]);
             }
@@ -131,7 +140,7 @@ public class User {
             }
             else 
             {
-                cuaca();
+                semua();
             }
         
         }
@@ -253,5 +262,26 @@ public class User {
         //input.setCommand("SEMUA");
         System.out.println("Anda merequest semua ramalan cuaca");
         //input.setConstraint("");
+        try {
+            
+            ous = new ObjectOutputStream(clientSocket.getOutputStream());
+            command = new Command();
+            command.setCommand("SEMUA");
+            ous.writeObject(command);
+            ous.flush();
+            
+            
+            ois = new ObjectInputStream(clientSocket.getInputStream());
+            input = (Command) ois.readObject();
+            System.out.println("command : "+ input.getCommand());
+            System.out.println("result : "+ input.getResult());
+            
+        } catch (IOException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+            
     }
 }

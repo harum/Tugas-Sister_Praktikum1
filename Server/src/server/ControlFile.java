@@ -18,7 +18,7 @@ public class ControlFile {
 
     private Command result;
     
-    public void cekCommand(Command input)
+    public Command cekCommand(Command input)
     {
         if(input.getCommand().toString().equals("SEMUA"))
         {            
@@ -61,6 +61,8 @@ public class ControlFile {
             //constraint yang dikirim harus berupa tanggal contoh "Hujan"
             result.setResult(bacaCuaca(input.getConstraint()));           
         }
+        
+        return result;
     }
     
 //Fungsi ini berfungsi membaca isi file lalu mengembalikan hasilnya ke string.

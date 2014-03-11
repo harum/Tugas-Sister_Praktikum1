@@ -78,6 +78,7 @@ public class Connecting {
             System.err.println("Menghubungi server ...");
             clientSocket = new Socket(Connecting.getServerName() , Connecting.getServerPort());
             Connecting.setClientSocket(clientSocket);
+            User.setClientSocket(clientSocket);
             
             //membaca balasan pertama dari server
             ObjectInputStream ois = new ObjectInputStream(Connecting.getClientSocket().getInputStream());

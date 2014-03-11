@@ -25,6 +25,7 @@ public class ClientRequestProcess extends Thread{
     private static ObjectOutputStream ous;
     private static ObjectInputStream ois;
     private Command command;
+    private Command result;
 
     ClientRequestProcess(Socket clientSocket) {
         this.clientSocket = clientSocket;
@@ -47,6 +48,8 @@ public class ClientRequestProcess extends Thread{
             ous.writeObject(command);
             ous.flush();
             
+            replayCommand();
+            
         } catch (IOException ex) {
             Logger.getLogger(ClientRequestProcess.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -54,30 +57,31 @@ public class ClientRequestProcess extends Thread{
     
     public void replayCommand()
     {
-        try {
-            while (clientSocket.getKeepAlive())
-            {
-                try {
-                    ois = new ObjectInputStream(clientSocket.getInputStream());
-                    ous = new ObjectOutputStream(clientSocket.getOutputStream());
-                    
-                    try {
-                        command = (Command) ois.readObject();
-                        System.out.println("command : "+ command.getCommand());
-                        System.out.println("status : "+ command.getStatus());
-
-                        
-                    } catch (ClassNotFoundException ex) {
-                        Logger.getLogger(ClientRequestProcess.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                   
-                } catch (IOException ex) {
-                    Logger.getLogger(ClientRequestProcess.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        while (clientSocket.isConnected())
+        {
+            System.out.println("Menunggu request client "+clientSocket.getRemoteSocketAddress());
+            try {
+                ois = new ObjectInputStream(clientSocket.getInputStream());
+                ous = new ObjectOutputStream(clientSocket.getOutputStream());
                 
+                System.out.println("Membaca request client");
+                command = (Command) ois.readObject();
+                System.out.println("command : "+ command.getCommand());
+                System.out.println("Selesai Membaca request client");
+                
+                result = new Command();
+                ControlFile controlFile = new ControlFile();
+                result = controlFile.cekCommand(command);
+                
+                ous.writeObject(result);
+                ous.flush();
+                
+            } catch (IOException ex) {
+                Logger.getLogger(ClientRequestProcess.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(ClientRequestProcess.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (SocketException ex) {
-            Logger.getLogger(ClientRequestProcess.class.getName()).log(Level.SEVERE, null, ex);
+
         }
     }
 }
