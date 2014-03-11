@@ -20,6 +20,10 @@ public class Server {
         ControlFile coba = new ControlFile();
         String temp;
         temp=coba.bacaCuaca("Hujan");
+        
+        SocketServer socketServer = new SocketServer();
+        
+        socketServer.makeConnection();
     }
     
 }
